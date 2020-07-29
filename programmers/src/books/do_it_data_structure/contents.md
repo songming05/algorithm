@@ -37,3 +37,4 @@ static int med3 (int a, int b, int c) {
 2. 기본 자료구조
 
 	this is my remote branch..
+	여기서부터 작성
