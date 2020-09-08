@@ -41,7 +41,11 @@ public class AnswerMain {
 		//        {"X","O","O","X"}        {"O","X","O","X"}
 		//        {"X","X","X","X"}        {"X","O","X","O"}
 		// 최소 변경 횟수     8회
-		//예시 3 END*******************************************/        
+		//예시 3 END*******************************************/
+		//X, !O, X, !O
+		//!O, !X, O, X
+		//X, O, !X, !O
+		//!O, X, !O, X
 
 		LevelOneOX levelOneOX =  new LevelOneOX();
 		//EXAMPL1
@@ -61,7 +65,7 @@ public class AnswerMain {
 		
 		
 		
-		
+		System.out.println("\n$$$$ 다음 문제 $$$$\n");
 		
 		String[] questionArr2;
 		int questionArrSize2;
