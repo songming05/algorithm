@@ -45,6 +45,14 @@ public class SolutionRightParenthesis {
         	}
         }
         System.out.println("u: "+u+", v: "+v);
+        
+        String[] splitedU = u.split("\\(\\)", -1);
+        String parsedU = "";
+        for(int i=0; i<splitedU.length; i++) {
+        	System.out.print(splitedU[i]+", ");
+        	parsedU += splitedU[i];
+        }
+        System.out.println();
 
         
         
