@@ -6,7 +6,7 @@ public class IOAndOperatorMain {
 
     public static void main(String[] args){
 
-        //problem10171();
+        problem10171();
 		
         problem10869();
 
