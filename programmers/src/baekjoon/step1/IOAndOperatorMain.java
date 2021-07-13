@@ -8,7 +8,7 @@ public class IOAndOperatorMain {
 
         //problem10171();
 		
-        //problem10869();
+        problem10869();
 
 
     }
