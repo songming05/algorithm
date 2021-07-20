@@ -11,13 +11,50 @@ public class IfStatementMain {
         //problem9498();
         
         //윤년
-        problem2753();
+        //problem2753();
+
+        //사분면 고르기 Quadrant n
+        problem14681();
+
+    }
+
+    private static void problem14681() {
+        //https://www.acmicpc.net/problem/14681
+        Scanner scanner = new Scanner(System.in);
+        String input1 = scanner.nextLine();
+        String input2 = scanner.nextLine();
+        int x = Integer.parseInt(input1);
+        int y = Integer.parseInt(input2);
+
+        String quadrant = "";
+        if(x > 0){
+            quadrant = y > 0 ? "1" : "4";
+        }else if (x < 0){
+            quadrant = y > 0 ? "2" : "3";
+        }else{
+            //0인 경우는 잘못된 입력이다.
+        }
+
+        System.out.println(quadrant);
 
     }
 
     private static void problem2753() {
         //https://www.acmicpc.net/problem/2753
+        Scanner scanner = new Scanner(System.in);
+        String input = scanner.nextLine();
+        int year = Integer.parseInt(input);
 
+        //chek400multiple
+        if(year % 400 == 0){
+            System.out.println("1");
+            return;
+        }else if(year % 100 != 0 && year % 4 == 0){
+            System.out.println("1");
+            return;
+        }
+
+        System.out.println("0");
     }
 
     private static void problem9498() {
