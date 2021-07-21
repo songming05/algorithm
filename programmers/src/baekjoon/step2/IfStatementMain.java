@@ -14,8 +14,27 @@ public class IfStatementMain {
         //problem2753();
 
         //사분면 고르기 Quadrant n
-        problem14681();
+        //problem14681();
+        
+        //알람 시계
+        problem2884();
+    }
 
+    private static void problem2884() {
+        //https://www.acmicpc.net/problem/2884
+        Scanner scanner = new Scanner(System.in);
+        String input = scanner.nextLine();
+        String[] splitedInputs = input.split(" ");
+        int hour = Integer.parseInt(splitedInputs[0]);
+        int minute = Integer.parseInt(splitedInputs[1]);
+
+        if(minute < 45) { //시간 -1
+            hour = hour == 0 ? 23 : hour-1;
+        }
+        minute += 15; //45분 전이라는 것은 항상 분은 +15 분 된 결과이다.
+        minute %= 60; //0~59분
+
+        System.out.println(hour + " " + minute);
     }
 
     private static void problem14681() {
