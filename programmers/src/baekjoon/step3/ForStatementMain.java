@@ -11,6 +11,22 @@ public class ForStatementMain {
         
         //A+B-3
         problem10950();
+
+        //합
+        problem8393();
+    }
+
+    private static void problem8393() {
+        //https://www.acmicpc.net/problem/8393
+        Scanner scanner = new Scanner(System.in);
+        String input = scanner.nextLine();
+        int n = Integer.parseInt(input);
+
+        int sum = 0;
+        for (int i = 1; i <= n; i++) {
+            sum += i;
+        }
+        System.out.println(sum);
     }
 
     private static void problem10950() {
