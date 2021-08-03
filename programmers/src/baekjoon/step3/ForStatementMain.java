@@ -1,10 +1,11 @@
 package baekjoon.step3;
 
+import java.io.*;
 import java.util.Scanner;
 
 public class ForStatementMain {
 
-    public static void main(String[] args){
+    public static void main(String[] args) throws IOException {
 
         //구구단
         //problem2739();
@@ -24,8 +25,116 @@ public class ForStatementMain {
         //https://www.acmicpc.net/blog/view/55
         
         //N 찍기
-        problem2741();
+        //problem2741();
+
+        //기찍 N
+        //problem2742();
+
+        //A+B - 7
+        //problem11021();
+
+        //A+B - 8
+        //problem11022();
         
+        //별 찍기 - 1
+        //problem2438();
+
+        //별 찍기 - 2
+        problem2439();
+
+    }
+
+    private static void problem2439() throws IOException {
+        //https://www.acmicpc.net/problem/2439
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        //BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(System.out));
+        String input = bufferedReader.readLine();
+        int n = Integer.parseInt(input);
+
+        for (int i = 1; i <= n; i++) {
+            int blank = n - i;
+            StringBuffer stringBuffer = new StringBuffer();
+            for (int j = 0; j < i; j++) {
+                stringBuffer.append("*");
+                blank++;
+            }
+            String format = blank == 0 ? "%s" : "%"+blank+"s%n";
+            System.out.printf(format, stringBuffer.toString());
+        }
+    }
+
+    private static void problem2438() {
+        //https://www.acmicpc.net/problem/2438
+        Scanner scanner = new Scanner(System.in);
+        String input = scanner.nextLine();
+        int n = Integer.parseInt(input);
+
+        StringBuffer stringBuffer = new StringBuffer();
+        for (int i = 1; i <= n; i++) {
+            for (int j = 0; j < i; j++) {
+                stringBuffer.append("*");
+            }
+            if(i != n) stringBuffer.append("\n");
+        }
+        System.out.println(stringBuffer.toString());
+    }
+
+    private static void problem11022() {
+        //https://www.acmicpc.net/problem/11022
+        Scanner scanner = new Scanner(System.in);
+        String input = scanner.nextLine();
+        int count = Integer.parseInt(input);
+
+        StringBuffer stringBuffer = new StringBuffer();
+        for(int i=0; i < count; i++){
+            String nums = scanner.nextLine();
+            String[] splitedNums = nums.split(" ");
+            int a = Integer.parseInt(splitedNums[0]);
+            int b = Integer.parseInt(splitedNums[1]);
+            stringBuffer.append("Case #");
+            stringBuffer.append(i+1);
+            stringBuffer.append(": ");
+            stringBuffer.append(a);
+            stringBuffer.append(" + ");
+            stringBuffer.append(b);
+            stringBuffer.append(" = ");
+            stringBuffer.append(a+b);
+            stringBuffer.append("\n");
+        }
+        System.out.println(stringBuffer.toString());
+    }
+
+    private static void problem11021() {
+        //https://www.acmicpc.net/problem/11021
+        Scanner scanner = new Scanner(System.in);
+        String input = scanner.nextLine();
+        int count = Integer.parseInt(input);
+
+        StringBuffer stringBuffer = new StringBuffer();
+        for(int i=0; i < count; i++){
+            String nums = scanner.nextLine();
+            String[] splitedNums = nums.split(" ");
+            int a = Integer.parseInt(splitedNums[0]);
+            int b = Integer.parseInt(splitedNums[1]);
+            stringBuffer.append("Case #");
+            stringBuffer.append(i+1);
+            stringBuffer.append(": ");
+            stringBuffer.append(a+b);
+            stringBuffer.append("\n");
+        }
+        System.out.println(stringBuffer.toString());
+    }
+
+    private static void problem2742() {
+        //https://www.acmicpc.net/problem/2742
+        Scanner scanner = new Scanner(System.in);
+        String input = scanner.nextLine();
+        int n = Integer.parseInt(input);
+
+        for (int i = n; i > 0; i--) {
+            System.out.println(i);
+        }
+
     }
 
     private static void problem2741() {
