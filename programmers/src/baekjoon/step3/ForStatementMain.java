@@ -40,8 +40,33 @@ public class ForStatementMain {
         //problem2438();
 
         //별 찍기 - 2
-        problem2439();
+        //problem2439();
 
+        //X보다 작은 수
+        problem10871();
+
+
+    }
+
+    private static void problem10871() throws IOException {
+        //https://www.acmicpc.net/problem/10871
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        String input = bufferedReader.readLine();
+        String[] splitedInputs = input.split(" ");
+        int n = Integer.parseInt(splitedInputs[0]);
+        int x = Integer.parseInt(splitedInputs[1]);
+
+        String[] splitedInputNums = bufferedReader.readLine().split(" ");
+        StringBuffer stringBuffer = new StringBuffer();
+        int[] nums = new int[n];
+        for (int i = 0; i < nums.length; i++) {
+            int targetNum = Integer.parseInt(splitedInputNums[i]);
+            if(targetNum < x){
+                stringBuffer.append(targetNum);
+                stringBuffer.append(" ");
+            }
+        }
+        System.out.println(stringBuffer.toString());
     }
 
     private static void problem2439() throws IOException {
