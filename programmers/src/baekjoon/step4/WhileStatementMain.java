@@ -21,25 +21,28 @@ public class WhileStatementMain {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(System.out));
 
-        String input = bufferedReader.readLine();
         int count = 0;
+        String input = bufferedReader.readLine();
         int firstNum = Integer.parseInt(input);//26, 9
-        int preNum = 0;
         int nextNum = 0;
-        if(firstNum < 10)  {
-            nextNum = (firstNum * 10) + (firstNum % 10);
-            count++;
-        }
+        int a = 0;
+        int b = 0;
+        int sum = 0;
+        a = firstNum / 10;
+        b = firstNum % 10;
+        sum = a + b;
+        nextNum = (b * 10) + (sum % 10);
+        count++;
 
         while (firstNum != nextNum){
-            int a = 0;
-            int b = 0;
-            int sum = 0;
-
-
+            a = b;
+            b = sum % 10;
+            sum = a + b;
+            nextNum = (b * 10) + (sum % 10);
             count++;
         }
 
+        System.out.println(count);
     }
 
     private static void problem10951() throws IOException {
