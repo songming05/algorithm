@@ -8,6 +8,7 @@ import java.util.Scanner;
 public class MusicNote2920Main {
 
     public static void main(String[] args) {
+        //https://www.acmicpc.net/problem/2920
         Scanner scanner = new Scanner(System.in);
         String[] input = scanner.nextLine().split(" ");
         String result = solveProblem(input);
