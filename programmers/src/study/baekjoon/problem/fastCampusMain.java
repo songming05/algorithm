@@ -16,7 +16,38 @@ public class fastCampusMain {
 
         //블랙잭
         //https://www.acmicpc.net/problem/2798
-        System.out.println(problem2798());
+        //System.out.println(problem2798());
+        System.out.println(problem2798_answer());
+    }
+
+    private static int problem2798_answer() throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(System.out));
+
+        String input = bufferedReader.readLine();
+        String[] splitedInput = input.split(" ");
+
+        int n = Integer.parseInt(splitedInput[0]);
+        int m = Integer.parseInt(splitedInput[1]);
+
+        String inputCards = bufferedReader.readLine();
+        int[] cards = new int[n];
+        String[] splitedInputCards = inputCards.split(" ");
+        for (int i = 0; i < splitedInputCards.length; i++) {
+            cards[i] = Integer.parseInt(splitedInputCards[i]);
+        }
+
+        int maxResult = 0;
+        for (int i = 0; i < cards.length; i++) {
+            for (int j = i+1; j < cards.length; j++) {
+                for (int k = j+1; k < cards.length; k++) {
+                    int sum = cards[i] + cards[j] + cards[k];
+                    if(sum <= m) maxResult = Math.max(maxResult, sum);
+                }
+            }
+        }
+
+        return maxResult;
     }
 
     private static int problem2798() throws IOException {
