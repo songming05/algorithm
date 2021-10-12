@@ -3,6 +3,8 @@ package study.baekjoon.problem;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.EmptyStackException;
+import java.util.Stack;
 
 public class fastCampusMain {
 
@@ -12,12 +14,64 @@ public class fastCampusMain {
         //음계
         //https://www.acmicpc.net/problem/2920
 
-
-
         //블랙잭
         //https://www.acmicpc.net/problem/2798
         //System.out.println(problem2798());
-        System.out.println(problem2798_answer());
+        //System.out.println(problem2798_answer());
+
+
+        //기본자료구조 - 02.핵심유형 문제풀이
+        //스택수열
+        //https://www.acmicpc.net/problem/1874
+        problem1874();
+    }
+
+    private static void problem1874() throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(System.out));
+
+        //n 입력, push는 1부터 오름차순 대로
+        String input = bufferedReader.readLine();
+        int n = Integer.parseInt(input);
+
+        Stack<Integer> stackN = new Stack<>();
+
+        int cursor = 1;
+        for(String next = bufferedReader.readLine(); next != null; next = bufferedReader.readLine()) {
+            if("".equals(next)) break;
+
+            int netxNumber = Integer.parseInt(next);
+            for(; cursor <= netxNumber; cursor++){
+                stackN.add(cursor);
+                bufferedWriter.append("+");
+                bufferedWriter.newLine();
+                if(cursor == netxNumber ) {
+                    try {
+                        stackN.pop();
+                    }catch (EmptyStackException ese){
+                        System.out.println("NO");
+                        return;
+                    }
+                    bufferedWriter.append("-");
+                    bufferedWriter.newLine();
+                }
+            }
+
+            try {
+                int peekNumber = stackN.peek();
+                if(netxNumber == peekNumber){
+                    stackN.pop();
+                    bufferedWriter.append("-");
+                    bufferedWriter.newLine();
+                }
+            }catch (EmptyStackException ese){
+                System.out.println("NO");
+                return;
+            }
+        }
+
+        bufferedWriter.flush();
+        bufferedWriter.close();
     }
 
     private static int problem2798_answer() throws IOException {
