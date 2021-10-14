@@ -23,7 +23,40 @@ public class fastCampusMain {
         //기본자료구조 - 02.핵심유형 문제풀이
         //스택수열
         //https://www.acmicpc.net/problem/1874
-        problem1874();
+        //problem1874();
+        problem1874_answer();
+    }
+
+    private static void problem1874_answer() throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(System.out));
+
+        //n 입력, push는 1부터 오름차순 대로
+        String input = bufferedReader.readLine();
+        int n = Integer.parseInt(input);
+        Stack<Integer> stackN = new Stack<>();
+
+        int cursor = 1;
+        for(int i=1; i <= n; i++) {
+            int data = Integer.parseInt(bufferedReader.readLine());
+
+            for(; cursor <= data; ){
+                stackN.add(cursor);
+                bufferedWriter.append("+");
+                bufferedWriter.newLine();
+                cursor++;
+            }
+            if(stackN.peek() == data) {
+                stackN.pop();
+                bufferedWriter.append("-");
+                if(data != 1) bufferedWriter.newLine();
+            }
+            else {
+                System.out.println("NO");
+                return;
+            }
+        }
+        bufferedWriter.flush();
     }
 
     private static void problem1874() throws IOException {
