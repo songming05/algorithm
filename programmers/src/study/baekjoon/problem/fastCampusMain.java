@@ -4,6 +4,9 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.EmptyStackException;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 public class fastCampusMain {
@@ -24,10 +27,64 @@ public class fastCampusMain {
         //스택수열
         //https://www.acmicpc.net/problem/1874
         //problem1874();
-        problem1874_answer();
+        //problem1874_answer();
+        
+        
+    	System.out.println("START");
+        problem1966();
     }
 
-    private static void problem1874_answer() throws IOException {
+    private static void problem1966() throws IOException {
+    	BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(System.out));
+
+        int count = Integer.parseInt(bufferedReader.readLine());
+        
+        Queue<Integer> queue = new LinkedList<>();
+        for(int i=0; i < count; i++) {
+        	String input = bufferedReader.readLine();
+        	String[] splitedInput = input.split(" ");
+        	int total = Integer.parseInt(splitedInput[0]);
+        	int targetIndex = Integer.parseInt(splitedInput[1]);
+        	
+        	String[] priorInput = bufferedReader.readLine().split(" ");
+        	int[] priorityArray = new int[priorInput.length];
+        	int order = 0; //Result
+        	
+        	//Queue&Array Init.
+        	for(int j=0; j < priorInput.length; j++) {
+        		int p = Integer.parseInt(priorInput[j]);
+        		priorityArray[j] = p;
+        		queue.add(p);
+        	}
+        	
+        	int targetPr = priorityArray[targetIndex];
+        	
+        	for(int pr = 9; pr >= targetPr; pr--) {
+        		if(!queue.contains(pr)) continue;
+        		//Full Scan
+        		for(int k=0; k < queue.size(); k++ ) {
+        			int pop = queue.poll();
+        			if(pop == pr) {
+        				order++;
+        				if(targetIndex > 0 ) targetIndex--;
+        				else if(targetPr == pr) break;
+        			}
+        			else {
+        				queue.add(pop);
+        				if(targetIndex > 0) targetIndex--;
+        				else targetIndex = queue.size() -1;
+        			}
+        		}
+        	}
+        	bufferedWriter.append(String.valueOf(order));
+        	if(i < count -1) bufferedWriter.newLine();
+        }
+		
+        bufferedWriter.flush();
+	}
+
+	private static void problem1874_answer() throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(System.out));
 
