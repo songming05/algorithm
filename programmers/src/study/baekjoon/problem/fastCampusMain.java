@@ -13,6 +13,8 @@ public class fastCampusMain {
 
     public static void main(String[] args) throws Exception {
 
+        System.out.println("START");
+
         //기본자료구조 - 01.기초문제풀이
         //음계
         //https://www.acmicpc.net/problem/2920
@@ -28,15 +30,16 @@ public class fastCampusMain {
         //https://www.acmicpc.net/problem/1874
         //problem1874();
         //problem1874_answer();
-        
-        
-    	System.out.println("START");
+
+        //프린터 큐
+        //https://www.acmicpc.net/problem/1966
         problem1966();
     }
 
     private static void problem1966() throws IOException {
     	BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(System.out));
+        //BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(System.out));
+        StringBuffer stringBuffer = new StringBuffer();
 
         int count = Integer.parseInt(bufferedReader.readLine());
         
@@ -77,43 +80,49 @@ public class fastCampusMain {
         			}
         		}
         	}
-        	bufferedWriter.append(String.valueOf(order));
-        	if(i < count -1) bufferedWriter.newLine();
+            stringBuffer.append(String.valueOf(order));
+        	if(i < count -1) stringBuffer.append("\n");
         }
 		
-        bufferedWriter.flush();
+        //bufferedWriter.flush();
+        System.out.println(stringBuffer.toString());
 	}
 
 	private static void problem1874_answer() throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(System.out));
+        //Buffer가 가득차면 write 해버린다...
+        //BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(System.out));
 
         //n 입력, push는 1부터 오름차순 대로
         String input = bufferedReader.readLine();
         int n = Integer.parseInt(input);
         Stack<Integer> stackN = new Stack<>();
 
+        StringBuffer stringBuffer = new StringBuffer();
+
         int cursor = 1;
-        for(int i=1; i <= n; i++) {
+        for(int i=0; i < n; i++) {
             int data = Integer.parseInt(bufferedReader.readLine());
 
+            //해당 숫자까지는 무조건 증가
             for(; cursor <= data; ){
                 stackN.add(cursor);
-                bufferedWriter.append("+");
-                bufferedWriter.newLine();
+                stringBuffer.append("+");
+                stringBuffer.append("\n");
                 cursor++;
             }
+
             if(stackN.peek() == data) {
                 stackN.pop();
-                bufferedWriter.append("-");
-                if(data != 1) bufferedWriter.newLine();
+                stringBuffer.append("-");
+                if(i != n-1) stringBuffer.append("\n");
             }
             else {
                 System.out.println("NO");
                 return;
             }
         }
-        bufferedWriter.flush();
+        System.out.println(stringBuffer.toString());
     }
 
     private static void problem1874() throws IOException {
