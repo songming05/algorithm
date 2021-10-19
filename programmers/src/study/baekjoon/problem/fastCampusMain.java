@@ -33,13 +33,16 @@ public class fastCampusMain {
 
         //프린터 큐
         //https://www.acmicpc.net/problem/1966
+        System.out.println("START");
+    	//1
+    	//100 32
+    	//2 9 2 4 1 8 8 5 4 6 3 4 6 2 8 2 3 6 6 2 2 8 2 5 8 9 6 2 6 1 2 8 1 4 9 8 2 5 3 3 1 3 4 6 5 1 7 5 6 1 4 6 6 5 1 5 3 6 4 8 7 6 4 5 7 3 1 6 8 2 7 6 4 8 3 8 8 7 1 5 6 5 8 2 9 8 4 2 3 8 8 7 4 2 9 8 5 9 2 1
         problem1966();
     }
 
     private static void problem1966() throws IOException {
     	BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        //BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(System.out));
-        StringBuffer stringBuffer = new StringBuffer();
+        BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(System.out));
 
         int count = Integer.parseInt(bufferedReader.readLine());
         
@@ -67,12 +70,14 @@ public class fastCampusMain {
         		if(!queue.contains(pr)) continue;
         		//Full Scan
         		for(int k=0; k < queue.size(); k++ ) {
-        			int pop = queue.poll();
+        			int pop = queue.poll();//빼서 확인
+        			//맞으면 증가
         			if(pop == pr) {
         				order++;
         				if(targetIndex > 0 ) targetIndex--;
         				else if(targetPr == pr) break;
         			}
+        			//아니면 맨뒤
         			else {
         				queue.add(pop);
         				if(targetIndex > 0) targetIndex--;
@@ -80,12 +85,12 @@ public class fastCampusMain {
         			}
         		}
         	}
-            stringBuffer.append(String.valueOf(order));
-        	if(i < count -1) stringBuffer.append("\n");
+        	//System.out.println(order+",\t"+targetIndex);
+        	bufferedWriter.append(String.valueOf(order));
+        	if(i < count -1) bufferedWriter.newLine();
         }
 		
-        //bufferedWriter.flush();
-        System.out.println(stringBuffer.toString());
+        bufferedWriter.flush();
 	}
 
 	private static void problem1874_answer() throws IOException {
