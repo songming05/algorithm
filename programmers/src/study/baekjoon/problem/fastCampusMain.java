@@ -1,13 +1,7 @@
 package study.baekjoon.problem;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.EmptyStackException;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Stack;
+import java.util.*;
 
 public class fastCampusMain {
 
@@ -33,11 +27,152 @@ public class fastCampusMain {
 
         //프린터 큐
         //https://www.acmicpc.net/problem/1966
-        System.out.println("START");
     	//1
     	//100 32
     	//2 9 2 4 1 8 8 5 4 6 3 4 6 2 8 2 3 6 6 2 2 8 2 5 8 9 6 2 6 1 2 8 1 4 9 8 2 5 3 3 1 3 4 6 5 1 7 5 6 1 4 6 6 5 1 5 3 6 4 8 7 6 4 5 7 3 1 6 8 2 7 6 4 8 3 8 8 7 1 5 6 5 8 2 9 8 4 2 3 8 8 7 4 2 9 8 5 9 2 1
-        problem1966();
+        //problem1966();
+        //problem1966_answer();
+
+
+        //키로거
+        //https://www.acmicpc.net/problem/5397
+        //3
+        //---<<BP<A>>Cd-
+        //ThIsIs--<<S3Cr->>3t>>--
+        //ThIsIs--<<S3Cr->>3t>>--ThIsIs--<<S3Cr->>3t>>--ThIsIs--<<S3Cr->>3t>>--ThIsIs--<<S3Cr->>3t>>--ThIsIs--<<S3Cr->>3t>>--ThIsIs--<<S3Cr->>3t>>--ThIsIs--<<S3Cr->>3t>>--ThIsIs--<<S3Cr->>3t>>--ThIsIs--<<S3Cr->>3t>>--ThIsIs--<<S3Cr->>3t>>--ThIsIs--<<S3Cr->>3t>>--ThIsIs--<<S3Cr->>3t>>--ThIsIs--<<S3Cr->>3t>>--ThIsIs--<<S3Cr->>3t>>--ThIsIs--<<S3Cr->>3t>>--ThIsIs--<<S3Cr->>3t>>--ThIsIs--<<S3Cr->>3t>>--ThIsIs--<<S3Cr->>3t>>--ThIsIs--<<S3Cr->>3t>>--ThIsIs--<<S3Cr->>3t>>--ThIsIs--<<S3Cr->>3t>>--ThIsIs--<<S3Cr->>3t>>--ThIsIs--<<S3Cr->>3t>>--ThIsIs--<<S3Cr->>3t>>--ThIsIs--<<S3Cr->>3t>>--ThIsIs--<<S3Cr->>3t>>--ThIsIs--<<S3Cr->>3t>>--ThIsIs--<<S3Cr->>3t>>--ThIsIs--<<S3Cr->>3t>>--ThIsIs--<<S3Cr->>3t>>--ThIsIs--<<S3Cr->>3t>>--ThIsIs--<<S3Cr->>3t>>--ThIsIs--<<S3Cr->>3t>>--ThIsIs--<<S3Cr->>3t>>--ThIsIs--<<S3Cr->>3t>>--ThIsIs--<<S3Cr->>3t>>--ThIsIs--<<S3Cr->>3t>>--ThIsIs--<<S3Cr->>3t>>--ThIsIs--<<S3Cr->>3t>>--ThIsIs--<<S3Cr->>3t>>--ThIsIs--<<S3Cr->>3t>>--ThIsIs--<<S3Cr->>3t>>--ThIsIs--<<S3Cr->>3t>>--ThIsIs--<<S3Cr->>3t>>--ThIsIs--<<S3Cr->>3t>>--ThIsIs--<<S3Cr->>3t>>--ThIsIs--<<S3Cr->>3t>>--
+        problem5397();
+
+    }
+
+    private static void problem5397() throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+
+        int n = Integer.parseInt(bufferedReader.readLine());
+        final String LEFT = "<";
+        final String RIGHT = ">";
+        final String BACK_SPACE = "-";
+//        final char CLEFT = '<';
+//        final char CRIGHT = '>';
+//        final char CBACK_SPACE = '-';
+
+        for(int i=0; i < n; i++) {
+            String input = bufferedReader.readLine();
+            String[] splitedInput = input.split("");
+
+            StringBuffer stringBuffer = new StringBuffer();
+            List<String> keyList = new ArrayList<>();
+            int cursor = 0;
+            for (int j = 0; j < splitedInput.length; j++) {
+                String data = splitedInput[j];
+                //System.out.println(data+",\t"+cursor);
+//                char cdata = data.charAt(0);
+//                switch (cdata) {
+//                    case CLEFT:
+//                        if(cursor > 0) cursor--;
+//                        break;
+//                    case CRIGHT:
+//                        //if(cursor < stringBuffer.length()) cursor++;
+//                        if(cursor < keyList.size()) cursor++;
+//                        break;
+//                    case CBACK_SPACE:
+//                        //if(cursor > 0 ) stringBuffer.deleteCharAt(--cursor);
+//                        if(cursor > 0) keyList.remove(--cursor);
+//                        break;
+//                    default:
+//                        //stringBuffer = stringBuffer.length() == cursor ? stringBuffer.append(data) : stringBuffer.insert(cursor, data);
+//                        if (keyList.size() == cursor) {
+//                            keyList.add(String.valueOf(data));
+//                        } else {
+//                            keyList.add(cursor, String.valueOf(data));
+//                        }
+//                        cursor++;
+//                        break;
+//                }
+
+
+                switch (data) {
+                    case LEFT:
+                        if(cursor > 0) cursor--;
+                        break;
+                    case RIGHT:
+                        //if(cursor < stringBuffer.length()) cursor++;
+                        if(cursor < keyList.size()) cursor++;
+                        break;
+                    case BACK_SPACE:
+                        //if(cursor > 0 ) stringBuffer.deleteCharAt(--cursor);
+                        if(cursor > 0) keyList.remove(--cursor);
+                        break;
+                    default:
+                        //stringBuffer = stringBuffer.length() == cursor ? stringBuffer.append(data) : stringBuffer.insert(cursor, data);
+                        if (keyList.size() == cursor) {
+                            keyList.add(data);
+                        } else {
+                            keyList.add(cursor, data);
+                        }
+                        cursor++;
+                        break;
+                }
+                //System.out.println(cursor);
+            }
+            for (int j = 0; j < keyList.size(); j++) {
+                stringBuffer.append(keyList.get(j));
+            }
+            System.out.println(stringBuffer.toString());
+        }
+
+    }
+
+    private static void problem1966_answer() throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(System.out));
+
+        int dataCount = Integer.parseInt(bufferedReader.readLine());
+        Queue<Integer> queue = new LinkedList<>();
+        for(int i=0; i < dataCount; i++) {
+            String input = bufferedReader.readLine();
+            String[] splitedInput = input.split(" ");
+            int n = Integer.parseInt(splitedInput[0]);
+            int m = Integer.parseInt(splitedInput[1]);
+
+            String[] priorInput = bufferedReader.readLine().split(" ");
+            int[] priorityArray = new int[priorInput.length];
+            int order = 0; //Result
+
+            //Queue&Array Init.
+            for(int j=0; j < priorInput.length; j++) {
+                int p = Integer.parseInt(priorInput[j]);
+                priorityArray[j] = p;
+                queue.add(p);
+            }
+
+            int targetPr = priorityArray[m];
+
+            for(int pr = 9; pr >= targetPr; pr--) {
+                if(!queue.contains(pr)) continue;
+                //Full Scan
+                for(int k=0; k < queue.size(); k++ ) {
+                    if(!queue.contains(pr)) break;
+
+                    int pop = queue.poll();//빼서 확인
+                    //맞으면 증가
+                    if(pop == pr) {
+                        order++;
+                        if(m > 0 ) m--;
+                        else if(targetPr == pr) break;
+                    }
+                    //아니면 맨뒤
+                    else {
+                        queue.offer(pop);
+                        if(m > 0) m--;
+                        else m = queue.size() -1;
+                    }
+                }
+            }
+            bufferedWriter.append(String.valueOf(order));
+            if(i < dataCount -1) bufferedWriter.newLine();
+        }
+
+        bufferedWriter.flush();
     }
 
     private static void problem1966() throws IOException {
@@ -79,7 +214,7 @@ public class fastCampusMain {
         			}
         			//아니면 맨뒤
         			else {
-        				queue.add(pop);
+        				queue.offer(pop);
         				if(targetIndex > 0) targetIndex--;
         				else targetIndex = queue.size() -1;
         			}
