@@ -1,6 +1,7 @@
 package baekjoon.step5;
 
 import java.io.*;
+import java.text.DecimalFormat;
 import java.util.Arrays;
 
 public class FirstDimensionArrayMain {
@@ -24,7 +25,78 @@ public class FirstDimensionArrayMain {
 		
 		//평균
 		//https://www.acmicpc.net/problem/1546
-		problem1546();
+		//problem1546();
+		
+		//OX퀴즈
+		//https://www.acmicpc.net/problem/8958
+		//problem8958();
+		
+		//평균은 넘겠지
+		//https://www.acmicpc.net/problem/4344
+		problem4344();
+	}
+
+	private static void problem4344() throws NumberFormatException, IOException {
+		BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(System.out));
+		
+		int count = Integer.parseInt(bufferedReader.readLine());
+		
+		for(int i=0; i < count; i++) {
+			String[] splitedInput = bufferedReader.readLine().split(" ");
+			float n = Float.parseFloat(splitedInput[0]);
+			int sum = 0;
+			for(int j=1; j < splitedInput.length; j++) {
+				sum += Integer.parseInt(splitedInput[j]);
+			}
+			float avg = sum / n;
+			int overCount = 0;
+			float percent = 0f;
+			for(int j=1; j < splitedInput.length; j++) {
+				overCount = Integer.parseInt(splitedInput[j]) > avg ? overCount+1: overCount;
+			}
+			percent = overCount / n  * 100;
+			bufferedWriter.append(String.format("%.3f", percent));
+			bufferedWriter.append("%");
+			bufferedWriter.newLine();
+		}
+		bufferedWriter.flush();
+	}
+
+	private static void problem8958() throws NumberFormatException, IOException {
+		BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+		BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(System.out));
+		
+		int n = Integer.parseInt(bufferedReader.readLine());
+		final String O_MARK = "O";
+		final String X_MARK = "X";
+		for(int i=0; i < n; i++) {
+			int valueWeight = 1; //점수가중치
+			int score = 0; //최종점수
+			String[] splitedInput = bufferedReader.readLine().split("");
+			
+			for(int j=0; j < splitedInput.length; j++) {
+				String data = splitedInput[j];
+				switch (data) {
+				case O_MARK:
+					score += valueWeight;
+					valueWeight++;
+					break;
+					
+				case X_MARK:
+					valueWeight = 1;
+					break;
+
+				default:
+					break;
+				}
+				
+			}
+			bufferedWriter.append(String.valueOf(score));
+			bufferedWriter.newLine();
+		}
+		bufferedWriter.flush();
+		
 	}
 
 	private static void problem1546() throws NumberFormatException, IOException {
