@@ -13,9 +13,29 @@ public class StringMain {
 
         //숫자의 합
         //https://www.acmicpc.net/problem/11720
-        problem11720();
+        //problem11720();
+
+        //알파벳 찾기
+        //https://www.acmicpc.net/problem/10809
+        problem10809();
 
 
+    }
+
+    private static void problem10809() throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        char smallA = 'a';
+        char[] alphabets = new char[26];
+        int[] results = new int[26];
+        for (int i = 0; i < alphabets.length; i++) {
+            alphabets[i] = smallA++;
+        }
+
+        String s = bufferedReader.readLine();
+        for (int i = 0; i < results.length; i++) {
+            results[i] = s.indexOf(alphabets[i]);
+            System.out.print(results[i]+" ");
+        }
     }
 
     private static void problem11720() throws IOException {
