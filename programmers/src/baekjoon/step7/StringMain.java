@@ -17,9 +17,33 @@ public class StringMain {
 
         //알파벳 찾기
         //https://www.acmicpc.net/problem/10809
-        problem10809();
+        //problem10809();
+
+        //문자열 반복
+        //https://www.acmicpc.net/problem/2675
+        problem2675();
 
 
+    }
+
+    private static void problem2675() throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+
+        int caseCount = Integer.parseInt(bufferedReader.readLine());
+        for (int i = 0; i < caseCount; i++) {
+            StringBuffer stringBuffer = new StringBuffer();
+            String input = bufferedReader.readLine();
+            String[] splitedData = input.split(" ");
+            int loopCount = Integer.parseInt(splitedData[0]);
+            String strData = splitedData[1];
+
+            for(String s : strData.split("")){
+                for (int j = 0; j < loopCount; j++) {
+                    stringBuffer.append(s);
+                }
+            }
+            System.out.println(stringBuffer.toString());
+        }
     }
 
     private static void problem10809() throws IOException {
