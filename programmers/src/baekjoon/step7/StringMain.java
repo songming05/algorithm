@@ -24,10 +24,13 @@ public class StringMain {
         //https://www.acmicpc.net/problem/2675
         //problem2675();
 
+        //단어공부
+        //https://www.acmicpc.net/problem/1157
+        problem1157();
+
         //단어의 개수
         //https://www.acmicpc.net/problem/1152
         problem1152();
-
 
     }
 
@@ -47,6 +50,41 @@ public class StringMain {
             count--;
         }
         System.out.println(count);
+    }
+
+    private static void problem1157() throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        String data = bufferedReader.readLine();
+        data = data.toLowerCase();
+        char[] dataArray = data.toCharArray();
+        String spells = "";
+        int[] sumCount = new int[dataArray.length];
+        for (int i = 0; i < dataArray.length; i++) {
+            char c = dataArray[i];
+            if(spells.contains(String.valueOf(c))){
+                int index = spells.indexOf(c);
+                sumCount[index]++;
+            } else {
+                spells += String.valueOf(c);
+                sumCount[spells.length()-1]++;
+            }
+        }
+
+        int max = 0;
+        int maxValueIndex = -1;
+        boolean hasSameValue = false;
+        for (int i = 0; i < sumCount.length; i++) {
+            int num = sumCount[i];
+            if(max <= num){
+                if(max == num) hasSameValue = true;
+                else hasSameValue = false;
+                max = num;
+                maxValueIndex = i;
+            }
+        }
+
+        if(hasSameValue) System.out.println("?");
+        else System.out.println(spells.toUpperCase().charAt(maxValueIndex));
     }
 
     private static void problem2675() throws IOException {
