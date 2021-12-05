@@ -3,6 +3,7 @@ package baekjoon.step7;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.nio.Buffer;
 
 public class StringMain {
 
@@ -21,9 +22,31 @@ public class StringMain {
 
         //문자열 반복
         //https://www.acmicpc.net/problem/2675
-        problem2675();
+        //problem2675();
+
+        //단어의 개수
+        //https://www.acmicpc.net/problem/1152
+        problem1152();
 
 
+    }
+
+    private static void problem1152() throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        String data = bufferedReader.readLine();
+        String[] splitedDatas = data.split(" ");
+        if(splitedDatas.length == 0) {
+            System.out.println(0);
+            return;
+        }
+        int count = splitedDatas.length;
+        if ("".equals(splitedDatas[0])) {
+            count--;
+        }
+        if ("".equals(splitedDatas[splitedDatas.length-1])) {
+            count--;
+        }
+        System.out.println(count);
     }
 
     private static void problem2675() throws IOException {
