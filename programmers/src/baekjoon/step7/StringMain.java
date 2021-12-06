@@ -26,12 +26,34 @@ public class StringMain {
 
         //단어공부
         //https://www.acmicpc.net/problem/1157
-        problem1157();
+        //problem1157();
 
         //단어의 개수
         //https://www.acmicpc.net/problem/1152
-        problem1152();
+        //problem1152();
 
+        //상수
+        //https://www.acmicpc.net/problem/2908
+        problem2908();
+
+    }
+
+    private static void problem2908() throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        String data = bufferedReader.readLine();
+        String[] datas = data.split(" ");
+        String originA = datas[0];
+        String originB = datas[1];
+        int length = 3;
+        String reversA = "" + originA.charAt(length-1) + originA.charAt(length-2) + originA.charAt(length-3);
+        String reversB = "" + originB.charAt(length-1) + originB.charAt(length-2) + originB.charAt(length-3);
+
+        int a = Integer.parseInt(reversA);
+        int b = Integer.parseInt(reversB);
+        int max = 0;
+
+        max = Math.max(a, b);
+        System.out.println(max);
     }
 
     private static void problem1152() throws IOException {
