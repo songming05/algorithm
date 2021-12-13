@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.Buffer;
+import java.util.HashMap;
+import java.util.Map;
 
 public class StringMain {
 
@@ -34,8 +36,136 @@ public class StringMain {
 
         //상수
         //https://www.acmicpc.net/problem/2908
-        problem2908();
+        //problem2908();
 
+        //다이얼
+        //https://www.acmicpc.net/problem/5622
+        problem5622();
+        problem5622_01();
+        problem5622_02();
+
+    }
+
+    private static void problem5622_02() throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+        char[] str = reader.readLine().toUpperCase().toCharArray();
+        int sum = 0;
+
+        for (char c : str) {
+            switch (c) {
+                case 'A':
+                case 'B':
+                case 'C':
+                    sum += 3;
+                    break;
+                case 'D':
+                case 'E':
+                case 'F':
+                    sum += 4;
+                    break;
+                case 'G':
+                case 'H':
+                case 'I':
+                    sum += 5;
+                    break;
+                case 'J':
+                case 'K':
+                case 'L':
+                    sum += 6;
+                    break;
+                case 'M':
+                case 'N':
+                case 'O':
+                    sum += 7;
+                    break;
+                case 'P':
+                case 'Q':
+                case 'R':
+                case 'S':
+                    sum += 8;
+                    break;
+                case 'T':
+                case 'U':
+                case 'V':
+                    sum += 9;
+                    break;
+                case 'W':
+                case 'X':
+                case 'Y':
+                case 'Z':
+                    sum += 10;
+                    break;
+            }
+        }
+
+        System.out.println(sum);
+    }
+
+    private static void problem5622_01() throws IOException {
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        char[] input = br.readLine().toCharArray();
+        int count = 0;
+
+        for(int i=0; i<input.length; i++) {
+            if('A' <= input[i] && input[i] < 'D')
+                count += 3;
+            else if('D' <= input[i] && input[i] < 'G')
+                count += 4;
+            else if('G' <= input[i] && input[i] < 'J')
+                count += 5;
+            else if('J' <= input[i] && input[i] < 'M')
+                count += 6;
+            else if('M' <= input[i] && input[i] < 'P')
+                count += 7;
+            else if('P' <= input[i] && input[i] < 'T')
+                count += 8;
+            else if('T' <= input[i] && input[i] < 'W')
+                count += 9;
+            else
+                count += 10;
+        }
+        System.out.println(count);
+    }
+
+    private static void problem5622() throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        String data = bufferedReader.readLine();
+        String[] splitedDatas = data.split("");
+
+        int[] seconds = new int[11];
+        String[] dials = new String[26];
+        for (int i = 1; i < seconds.length; i++) {
+            seconds[i] = i+1;
+        }
+        char alphabet = 'A';
+        for(int i=0; i < dials.length; i++){
+            dials[i] = String.valueOf(alphabet++);
+        }
+
+        Map<String, Integer> dialMap = new HashMap<>();
+        int idx = 0;
+        for (int i = 3; i < seconds.length; i++) {
+            dialMap.put(dials[idx], i);
+            dialMap.put(dials[idx + 1], i);
+            dialMap.put(dials[idx + 2], i);
+            if(i == 8) {
+                dialMap.put(dials[idx + 3], i);
+                idx = idx + 4;
+            }
+            else if (i == 10) {
+                dialMap.put(dials[idx + 3], i);
+            }
+            else
+                idx = idx + 3;
+        }
+
+        int result = 0;
+        for (int i = 0; i < splitedDatas.length; i++) {
+            result += dialMap.get(splitedDatas[i]);
+        }
+
+        System.out.println(result);
     }
 
     private static void problem2908() throws IOException {
