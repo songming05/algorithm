@@ -40,9 +40,59 @@ public class StringMain {
 
         //다이얼
         //https://www.acmicpc.net/problem/5622
-        problem5622();
-        problem5622_01();
-        problem5622_02();
+        //problem5622();
+        //problem5622_01();
+        //problem5622_02();
+
+        //크로아티아 알파벳
+        //https://www.acmicpc.net/problem/2941
+        problem2941();
+
+    }
+
+    private static void problem2941() throws IOException {
+        //String[] checker = {"c", "d", "l", "n", "s", "z"};
+
+        //vars
+        String[] croatia2 = {"c=", "c-", "d-", "lj", "nj", "s=", "z="};
+        String croatia3 = "dz=";
+        String checker = "cdlnsz";
+
+        //input
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        String data = bufferedReader.readLine();
+        String[] datas = data.split("");
+
+        //result
+        int result = data.length();
+
+        //logic
+        for (int i = 0; i < datas.length; i++) {
+            String firstStr = datas[i];
+            if(checker.indexOf(firstStr) > -1 && i + 1 < datas.length) {//OutOfIndex
+                String str = firstStr + datas[i+1];
+                for(String two : croatia2) {
+                    if(two.equals(str)){
+                        i++;
+                        result--;
+                        break;
+                    }
+                }
+
+                //2글자 크로아티아 없으면
+                if(!"d".equals(firstStr)) continue;
+                if(i + 2 < datas.length) {//OutOfIndex
+                    str += datas[i+2];
+                    if(croatia3.equals(str)) {
+                        i = i+2;
+                        result = result-2;
+                    }
+                }
+            }
+        }//END for
+
+
+        System.out.println(result);
 
     }
 
