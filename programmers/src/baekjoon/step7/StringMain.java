@@ -46,8 +46,38 @@ public class StringMain {
 
         //크로아티아 알파벳
         //https://www.acmicpc.net/problem/2941
-        problem2941();
+        //problem2941();
 
+        //그룹 단어 체커
+        //https://www.acmicpc.net/problem/1316
+        problem1316();
+
+    }
+
+    private static void problem1316() throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(bufferedReader.readLine());
+        int result = 0;
+        for (int i = 0; i < n; i++) {
+            boolean isGroupWord = false;
+            String data = bufferedReader.readLine();
+            isGroupWord = chekGroupWord(data);
+            if(isGroupWord) result++;
+        }
+
+        System.out.println(result);
+    }
+
+    private static boolean chekGroupWord(String data) {
+        boolean result = true;
+        for (int i = 0; i < data.length(); i++) {
+            if(i+1 < data.length() && data.charAt(i) != data.charAt(i+1)) {
+                String prevGroup = String.valueOf(data.charAt(i));
+                String restData = data.substring(i+1);
+                if(restData.indexOf(prevGroup) > -1 ) return false;
+            }
+        }
+        return result;
     }
 
     private static void problem2941() throws IOException {
