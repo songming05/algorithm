@@ -8,7 +8,32 @@ public class GeneralMath01 {
     public static void main(String[] args) throws Exception {
         //손익분기점
         //https://www.acmicpc.net/problem/1712
-        problem1712();
+        //problem1712();
+
+        //벌집
+        //https://www.acmicpc.net/problem/2292
+        problem2292();
+    }
+
+    private static void problem2292() throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(bufferedReader.readLine());
+        //1 6 12 18 24
+        int result = 0;
+        int current = 0;
+        for (int i = 0; current < 1000000000; i++) {
+            if(i == 0) {
+                current = 1;
+            } else {
+                current += 6 * i;
+            }
+
+            if(n <= current) {
+                result = i + 1;
+                break;
+            }
+        }
+        System.out.println(result);
     }
 
     private static void problem1712() throws IOException {
