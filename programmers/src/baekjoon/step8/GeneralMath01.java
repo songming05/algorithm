@@ -12,7 +12,44 @@ public class GeneralMath01 {
 
         //벌집
         //https://www.acmicpc.net/problem/2292
-        problem2292();
+        //problem2292();
+
+        //분수찾기
+        //https://www.acmicpc.net/problem/1193
+        problem1193();
+    }
+
+    private static void problem1193() throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        int x = Integer.parseInt(bufferedReader.readLine());
+        final int X_MAX = 10000000;
+
+        long sum = 0;
+        int step = 0;
+
+        //몇 번 째 단계인지 찾기 (현재 방향 홀수: 우상향, 짝수: 좌하향)
+        for(int i = 1; i <= X_MAX; i++ ) {
+            if(x <= sum + i) {
+              step = i;
+              break;
+            }
+            sum += i;
+        }
+
+        long remainingNumber = x - sum;
+        String result = "";
+
+        if(step % 2 == 1) {
+            //분자 = step + 1 - 남은 개수
+            //분모 = 남은개수
+            result = (step + 1 - remainingNumber) + "/" + remainingNumber;
+        } else {
+            //분자 = 남은개수
+            //분모 = step + 1 - 남은 개수
+            result = remainingNumber + "/" + (step + 1 - remainingNumber);
+        }
+
+        System.out.println(result);
     }
 
     private static void problem2292() throws IOException {
