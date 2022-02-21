@@ -16,7 +16,25 @@ public class GeneralMath01 {
 
         //분수찾기
         //https://www.acmicpc.net/problem/1193
-        problem1193();
+        //problem1193();
+
+        //달팽이는 올라가고 싶다
+        //https://www.acmicpc.net/problem/2869
+        problem2869();
+    }
+
+    private static void problem2869() throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        String input = bufferedReader.readLine();
+        int a = Integer.parseInt(input.split(" ")[0]);
+        int b = Integer.parseInt(input.split(" ")[1]);
+        int v = Integer.parseInt(input.split(" ")[2]);
+
+        double h = v - a;
+        double diff = a - b;
+        int result = (int) (Math.ceil(h / diff) + 1);
+        System.out.println(result);
+
     }
 
     private static void problem1193() throws IOException {
