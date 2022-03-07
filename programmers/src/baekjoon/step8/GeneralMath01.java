@@ -3,6 +3,8 @@ package baekjoon.step8;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.function.IntConsumer;
+import java.util.function.IntSupplier;
 
 public class GeneralMath01 {
     public static void main(String[] args) throws Exception {
@@ -20,7 +22,30 @@ public class GeneralMath01 {
 
         //달팽이는 올라가고 싶다
         //https://www.acmicpc.net/problem/2869
-        problem2869();
+        //problem2869();
+
+        //ACM호텔
+        //https://www.acmicpc.net/problem/10250
+        problem10250();
+    }
+
+    private static void problem10250() throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        String input = bufferedReader.readLine();
+        int t = Integer.parseInt(input);
+
+        for (int i = 0; i < t; i++) {
+            String data = bufferedReader.readLine();
+            int height = Integer.parseInt(data.split(" ")[0]);
+            int width = Integer.parseInt(data.split(" ")[1]);
+            int number = Integer.parseInt(data.split(" ")[2]);
+
+            int floor = number % height;
+            if(floor == 0) floor = height;
+            int room = (int) Math.ceil( (float) number / height);
+
+            System.out.println(String.format("%d%02d", floor, room));
+        }
     }
 
     private static void problem2869() throws IOException {
