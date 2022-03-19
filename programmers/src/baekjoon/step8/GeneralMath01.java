@@ -26,7 +26,60 @@ public class GeneralMath01 {
 
         //ACM호텔
         //https://www.acmicpc.net/problem/10250
-        problem10250();
+        //problem10250();
+
+        //부녀회장이 될테야
+        //https://www.acmicpc.net/problem/2775
+        problem2775();
+    }
+
+    private static void problem2775() throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        int tCase = Integer.parseInt(bufferedReader.readLine());
+
+        for (int i = 0; i < tCase; i++) {
+            int k = Integer.parseInt(bufferedReader.readLine()); //floor
+            int n = Integer.parseInt(bufferedReader.readLine()); //room
+            int[][] apt = new int[15][15]; //0~14(층), 1~14(호)
+            initApartmentConstant(apt);
+            dynamicApartment(apt, k, n);
+            System.out.println(apt[k][n]);
+        }
+    }
+
+    private static int dynamicApartment(int[][] apt, int k, int n) {
+//        a_i_j = i층 / j 호 (j >=1)
+//                = a_i_(j-1) + a_(i-1)_j
+//        when i = 0
+//          then a_i_j = j명 거주
+//        when j = 1
+//          then 1 명
+        int value = 0;
+        if(n < 1) return value;
+
+        if (apt[k][n] != 0) {
+//            System.out.print("#k:"+k+", n:"+n+"\t");
+//            System.out.println("apt[k][n] != 0, val:" + apt[k][n]);
+            return apt[k][n];
+        }
+        if(k > 0) {
+//            System.out.print("##k:"+k+", n:"+n+"\t");
+            value = dynamicApartment(apt, k, n-1) + dynamicApartment(apt, k-1, n);
+            apt[k][n] = value;
+//            System.out.println("k > 0, val:" + apt[k][n]);
+        } else {
+//            System.out.print("###k:"+k+", n:"+n+"\t");
+//            System.out.println("else, val:" + apt[k][n]);
+            return apt[k][n];
+        }
+        return value;
+    }
+
+    private static void initApartmentConstant(int[][] apt) {
+        for (int i = 0; i < apt[0].length; i++) {
+            apt[0][i] = i;
+            apt[i][1] = 1;
+        }
     }
 
     private static void problem10250() throws IOException {
