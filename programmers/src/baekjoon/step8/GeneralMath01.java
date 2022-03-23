@@ -30,7 +30,108 @@ public class GeneralMath01 {
 
         //부녀회장이 될테야
         //https://www.acmicpc.net/problem/2775
-        problem2775();
+        //problem2775();
+
+        //설탕 배달
+        //https://www.acmicpc.net/problem/2839
+        problem2839();
+    }
+
+    private static void problem2839() throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(bufferedReader.readLine());
+
+        //아래의 수 말고는 모든 수 조합 가능 (3/8,1/6,4/9,7/12,5/10)
+        int[] impossibleNumbers = {1,2,4,7};
+        for (int i = 0; i < impossibleNumbers.length; i++) {
+            if(n == impossibleNumbers[i]) {
+                System.out.println(-1);
+                return;
+            }
+        }
+        int last = n % 10;
+        int result = 0;
+        if(n < 15 && n % 3 == 0) {
+            result = n / 3;
+            System.out.println(result);
+            return;
+        }
+        result = n / 5;
+        switch (last) {
+            case 5:
+            case 0:
+                break;
+            case 3:
+            case 8:
+            {
+                result++;
+                break;
+            }
+            case 1:
+            case 6:
+            {
+                result--; // minus 5
+                result = result + 2;// divide 3
+                break;
+            }
+            case 4:
+            case 9:
+            {
+                result--; //minus 5
+                result = result + 3; //divide 3
+                break;
+            }
+            case 2:
+            case 7:
+            {
+                result = result - 2; //minus 10
+                result = result + 4; //divide 3
+                break;
+            }
+        }
+        System.out.println(result);
+
+
+
+
+
+
+
+        // 배달가능 : n % 3 == 0 || n % 5 == 0 || (n - 3x) % 5 == 0  (단, X = 1,2,3,4)
+        //when 배달가능
+        //  then n % 5 == 3 check
+        // when n = 5a + 3b (a,b >= 0)
+        //  then
+//        if(n % 3 == 0 || n % 5 == 0) isPossibleDeli = true;
+//        if(!isPossibleDeli) {
+//            for (int i = 1; i < 5; i++) {
+//                if(n <= 3 * i ) continue; // n > 3x 여야 한다.
+//                if((n - (3*i)) % 5 == 0) {
+//                    isPossibleDeli = true;
+//                    break;
+//                }
+//            }
+//        }
+//
+//        if(!isPossibleDeli) {
+//            System.out.println(-1);
+//            return;
+//        }
+
+//        int result = 0;
+//        //n = 5k / n = 3k / n = 5k + 3l
+//        if(n % 5 == 0) {
+//            result = n / 5;
+//        }
+//        if(n % 5 == 3) {
+//            result = n / 5;
+//            result++;
+//        }else if(n % 5 == 0) {
+//
+//        }else {
+//            result = n / 3;
+//        }
+//        System.out.println(result);
     }
 
     private static void problem2775() throws IOException {
