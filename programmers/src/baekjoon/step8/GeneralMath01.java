@@ -3,6 +3,7 @@ package baekjoon.step8;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.math.BigDecimal;
 import java.util.function.IntConsumer;
 import java.util.function.IntSupplier;
 
@@ -34,7 +35,19 @@ public class GeneralMath01 {
 
         //설탕 배달
         //https://www.acmicpc.net/problem/2839
-        problem2839();
+        //problem2839();
+
+        //큰 수 A+B
+        //https://www.acmicpc.net/problem/10757
+        problem10757();
+    }
+
+    private static void problem10757() throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        String[] datas = bufferedReader.readLine().split(" ");
+        BigDecimal a = new BigDecimal(datas[0]);
+        BigDecimal b = new BigDecimal(datas[1]);
+        System.out.println(a.add(b));
     }
 
     private static void problem2839() throws IOException {
