@@ -9,7 +9,34 @@ public class GeneralMath02 {
     public static void main(String[] args) throws Exception {
         //소수찾기
         //https://www.acmicpc.net/problem/1978
-        problem1978();
+        //problem1978();
+
+        //소수
+        //https://www.acmicpc.net/problem/2581
+        problem2581();
+    }
+
+    private static void problem2581() throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        int m = Integer.parseInt(bufferedReader.readLine());
+        int n = Integer.parseInt(bufferedReader.readLine());
+        int[] primes = findAllPrimeNumbers(10000);
+        int sum = 0;
+        int min = 0;
+        int nonExists = -1;
+
+        for (int i = 0; i < primes.length; i++) {
+            if(m <= primes[i] && primes[i] <= n) {
+                sum += primes[i];
+                if(min == 0) min = primes[i];
+            }
+        }
+        if(sum == 0 && min == 0) {
+            System.out.println(nonExists);
+            return;
+        }
+        System.out.println(sum);
+        System.out.println(min);
     }
 
     private static void problem1978() throws IOException {
