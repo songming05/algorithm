@@ -17,7 +17,24 @@ public class GeneralMath02 {
 
         //소인수분해
         //https://www.acmicpc.net/problem/11653
-        problem11653();
+        //problem11653();
+
+        //소수 구하기
+        //https://www.acmicpc.net/problem/1929
+        problem1929();
+
+    }
+
+    private static void problem1929() throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        String[] datas = bufferedReader.readLine().split(" ");
+        int m = Integer.parseInt(datas[0]);
+        int n = Integer.parseInt(datas[1]);
+        int[] primes = findAllPrimeNumbers(n);
+
+        for (int i = 0; i < primes.length; i++) {
+            if(m <= primes[i]) System.out.println(primes[i]);
+        }
     }
 
     private static void problem11653() throws IOException {
@@ -94,10 +111,11 @@ public class GeneralMath02 {
 
     private static int[] findAllPrimeNumbers(int maxNumber) {
         int[] primes = new int[maxNumber / 2]; //소수 배열
+        if(maxNumber < 10) primes = new int[maxNumber];
         int count = 0;
 
-        primes[count++] = 2;
-        primes[count++] = 3;
+        if(maxNumber >= 2) primes[count++] = 2;
+        if(maxNumber >= 3) primes[count++] = 3;
 
         for (int num = 5; num <= maxNumber; num += 2) { //홀수만 체크
 
