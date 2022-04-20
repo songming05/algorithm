@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.function.Function;
 
 public class GeneralMath02 {
     public static void main(String[] args) throws Exception {
@@ -21,7 +23,36 @@ public class GeneralMath02 {
 
         //소수 구하기
         //https://www.acmicpc.net/problem/1929
-        problem1929();
+        //problem1929();
+
+        //베르트랑 공준
+        //https://www.acmicpc.net/problem/4948
+        problem4948();
+
+    }
+
+    private static void problem4948() throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(bufferedReader.readLine());
+        while(n != 0) {
+            int result = 0;
+            int[] nPrimes = findAllPrimeNumbers(n);
+            int[] twiceNPrimes = findAllPrimeNumbers(2 * n);
+
+            Function<int[], ArrayList<Integer>> existsValueArray = ints -> {
+                ArrayList<Integer> list = new ArrayList<>();
+                for (int i = 0; i < ints.length; i++) {
+                    if(ints[i] != 0) list.add(ints[i]);
+                    else break;
+                }
+                return list;
+            };
+
+            result = existsValueArray.apply(twiceNPrimes).size() - existsValueArray.apply(nPrimes).size();
+
+            System.out.println(result);
+            n = Integer.parseInt(bufferedReader.readLine());
+        }
 
     }
 
