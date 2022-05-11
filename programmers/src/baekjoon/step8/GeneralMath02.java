@@ -27,8 +27,112 @@ public class GeneralMath02 {
 
         //베르트랑 공준
         //https://www.acmicpc.net/problem/4948
-        problem4948();
+        //problem4948();
 
+        //골드바흐의 추측
+        //https://www.acmicpc.net/problem/9020
+        //problem9020();
+        problem9020sameDistance();
+
+    }
+
+    private static void problem9020sameDistance() throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        int count = Integer.parseInt(bufferedReader.readLine()); //Test case
+        int[] primes = findAllPrimeNumbers(10000);
+
+        for (int i = 0; i < count; i++) {
+            //파티션 결과 a,b는 제시된 수의 1/2 값과의 차가 같다...
+            int number = Integer.parseInt(bufferedReader.readLine());
+            int half = number / 2;
+            int midPoint = -1;
+
+            for (int j = 0; j < primes.length; j++) {
+                if (primes[j] == 0) break;
+
+                if(half <= primes[j]) {
+                    midPoint = j;
+                    break;
+                }
+            }
+            FIND:
+            for (int j = midPoint; j >= 0; j--) {
+                int a = primes[j];
+                if(a == half) {
+                    System.out.println(a+" "+a);
+                    break FIND;
+                }
+                if(a > half) continue;
+                int difference = half - a;
+                for (int k = midPoint; k < primes.length; k++) {
+                    if(primes[k] == 0) break;
+                    int b = primes[k];
+                    int secondDiff = b - half;
+                    if(secondDiff > difference) break;
+                    if(secondDiff == difference) {
+                        System.out.println(a+" "+b);
+                        break FIND;
+                    }
+                }
+            }
+            System.out.println("number:"+number+", midPoint:"+midPoint);
+            //System.out.println("number:"+number+", midPoint:"+midPoint +", midPrime:"+primes[midPoint]+", "+primes[midPoint-1]);
+
+        }
+    }
+
+    private static void problem9020() throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        int count = Integer.parseInt(bufferedReader.readLine()); //Test case
+        int[] primes = findAllPrimeNumbers(10000);
+        ArrayList<Integer> primeList = new ArrayList<>();
+        for (int i = 0; i < primes.length; i++) {
+            if(primes[i] != 0) primeList.add(primes[i]);
+        }
+
+        for (int i = 0; i < count; i++) {
+            //a, b는 소수 (a <= b)
+            //x = a+b break
+            //x < a+b continue
+            //다수의 파티션일 경우에 대한 풀이...
+            // 절반으로 나눈 값부터 시작해서, looping은 -, endpoint는 동일
+            int sum = Integer.parseInt(bufferedReader.readLine());
+            int startPoint = 0;
+
+            for (int j = 0; j < primeList.size(); j++) {
+                if ((sum / 2) <= primeList.get(j)) {
+                    startPoint = j;
+                    break;
+                }
+            }
+            //System.out.println("startPoint:" + startPoint + ", value:" + primeList.get(startPoint));
+            boolean isFullScan = true;
+            FIND:
+            for (int j = startPoint; j > 0; j--) {
+                int a = primeList.get(j);
+                for (int k = j; k > 0; k--) {
+                    int b = primeList.get(k);
+                    if (sum == a + b) {
+                        System.out.println(b + " " + a);
+                        isFullScan = false;
+                        break FIND;
+                    }
+                }
+            }
+            if (isFullScan) {
+                FIND:
+                for (int j = startPoint + 1; j < primeList.size(); j++) {
+                    int a = primeList.get(j);
+                    for (int k = 0; k < startPoint; k++) {
+                        int b = primeList.get(k);
+                        if (sum == a + b) {
+                            System.out.println(b + " " + a);
+                            break FIND;
+                        }
+                    }
+                }
+            }
+        }
     }
 
     private static void problem4948() throws IOException {
