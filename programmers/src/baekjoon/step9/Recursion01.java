@@ -17,7 +17,26 @@ public class Recursion01 {
         
         //재귀함수가 뭔가요?
         //https://www.acmicpc.net/problem/17478
-        problem17478();
+        //problem17478();
+        
+        //별 찍기 -10
+        //https://www.acmicpc.net/problem/2447
+        prolbem2447();
+                
+    }
+
+    private static void prolbem2447() throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(bufferedReader.readLine()); // n < 8 : 3^8 =6561
+        String pattern01 = "***";
+        String pattern02 = "* *";
+        String pattern03 = "   ";
+        StringBuffer result = new StringBuffer();
+        for (int i = 0; i < n; i++) {
+            result.append(pattern01);
+            result.append(System.lineSeparator());
+        }
+
     }
 
     private static void problem17478() throws IOException {
