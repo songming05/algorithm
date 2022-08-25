@@ -16,8 +16,47 @@ public class UnionMap01 {
 
         // 문자열 집합
         // https://www.acmicpc.net/problem/14425
-        problem14425();
+        //problem14425();
+
+        // 나는야 포켓몬 마스터 이다솜
+        //https://www.acmicpc.net/problem/1620
+        problem1620();
     }
+
+    private static void problem1620() throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        String[] datas = bufferedReader.readLine().split(" ");
+        int n = Integer.parseInt(datas[0]);
+        int m = Integer.parseInt(datas[1]);
+        ArrayList<String> poketmonList = new ArrayList<>();
+        ArrayList<String> findList = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            poketmonList.add(bufferedReader.readLine());
+        }
+        for (int i = 0; i < m; i++) {
+            findList.add(bufferedReader.readLine());
+        }
+        StringBuffer stringBuffer = new StringBuffer();
+        for (int i = 0; i < findList.size(); i++) {
+            String target = findList.get(i);
+            if (target.matches("^[0-9]*$")) {
+                stringBuffer.append(poketmonList.get(Integer.parseInt(target) - 1));
+            } else {
+                int idx = -1;
+                for (int j = 0; j < poketmonList.size(); j++) {
+                    if(target.equals(poketmonList.get(j))) {
+                        idx = j;
+                        break;
+                    }
+                }
+                stringBuffer.append(idx+1);
+                //stringBuffer.append(poketmonList.lastIndexOf(target) + 1);
+            }
+            stringBuffer.append(System.lineSeparator());
+        }
+        System.out.println(stringBuffer);
+    }
+
 
     private static void problem14425() throws IOException {
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
