@@ -28,14 +28,19 @@ public class UnionMap01 {
         String[] datas = bufferedReader.readLine().split(" ");
         int n = Integer.parseInt(datas[0]);
         int m = Integer.parseInt(datas[1]);
+        HashMap<String, Integer> poketmonMap = new HashMap<>();
         ArrayList<String> poketmonList = new ArrayList<>();
         ArrayList<String> findList = new ArrayList<>();
         for (int i = 0; i < n; i++) {
-            poketmonList.add(bufferedReader.readLine());
+            String name = bufferedReader.readLine();
+            poketmonMap.put(name, i);
+            poketmonList.add(name);
         }
         for (int i = 0; i < m; i++) {
             findList.add(bufferedReader.readLine());
         }
+
+
         StringBuffer stringBuffer = new StringBuffer();
         for (int i = 0; i < findList.size(); i++) {
             String target = findList.get(i);
@@ -43,13 +48,15 @@ public class UnionMap01 {
                 stringBuffer.append(poketmonList.get(Integer.parseInt(target) - 1));
             } else {
                 int idx = -1;
-                for (int j = 0; j < poketmonList.size(); j++) {
-                    if(target.equals(poketmonList.get(j))) {
-                        idx = j;
-                        break;
-                    }
-                }
-                stringBuffer.append(idx+1);
+//                for (int j = 0; j < poketmonList.size(); j++) {
+//                    if(target.equals(poketmonList.get(j))) {
+//                        idx = j;
+//                        break;
+//                    }
+//                }
+
+                stringBuffer.append(poketmonMap.get(target)+1);
+                //stringBuffer.append(idx+1);
                 //stringBuffer.append(poketmonList.lastIndexOf(target) + 1);
             }
             stringBuffer.append(System.lineSeparator());
@@ -91,7 +98,7 @@ public class UnionMap01 {
         StringBuilder stringBuilder = new StringBuilder();
         for (int i = 0; i < m; i++) {
             //keyset (138068KB	944ms)
-            boolean isExists = myCardMap.keySet().contains(checkers[i]);
+            boolean isExists = myCardMap.containsKey(checkers[i]);
 
             //hashmap (141744KB	924ms)
 //            boolean isExists = Optional.ofNullable(myCardMap.get(checkers[i]))
