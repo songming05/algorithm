@@ -4,10 +4,11 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Optional;
 
-public class UnionMap01 {
+public class UnionAndMap01 {
 
     public static void main(String[] args) throws Exception {
         // 숫자 카드
@@ -20,7 +21,35 @@ public class UnionMap01 {
 
         // 나는야 포켓몬 마스터 이다솜
         //https://www.acmicpc.net/problem/1620
-        problem1620();
+        //problem1620();
+
+        //숫자 카드 2
+        //https://www.acmicpc.net/problem/10816
+        problem10816();
+
+    }
+
+    private static void problem10816() throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        int n = Integer.parseInt(bufferedReader.readLine());
+        String[] datas = bufferedReader.readLine().split(" ");
+        int m = Integer.parseInt(bufferedReader.readLine());
+        String[] checkers = bufferedReader.readLine().split(" ");
+        HashMap<String, Integer> cardMap = new HashMap<>();
+        for(String s : datas) {
+            int currentCount = Optional.ofNullable(cardMap.get(s))
+                    .orElse(0);
+            cardMap.put(s, currentCount+1);
+        }
+
+        StringBuffer stringBuffer = new StringBuffer();
+        for(String s: checkers) {
+            int maybeValueOrDefault = Optional.ofNullable(cardMap.get(s))
+                    .orElse(0);
+            stringBuffer.append(maybeValueOrDefault+ " ");
+        }
+
+        System.out.println(stringBuffer);
     }
 
     private static void problem1620() throws IOException {
