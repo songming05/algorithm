@@ -3,10 +3,8 @@ package baekjoon.step12;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class UnionAndMap01 {
 
@@ -25,8 +23,54 @@ public class UnionAndMap01 {
 
         //숫자 카드 2
         //https://www.acmicpc.net/problem/10816
-        problem10816();
+        //problem10816();
 
+        //듣보잡
+        //https://www.acmicpc.net/problem/1764
+        problem1764();
+
+    }
+
+    private static void problem1764() throws IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        String[] numbers = bufferedReader.readLine().split(" ");
+        int n = Integer.parseInt(numbers[0]);
+        int m = Integer.parseInt(numbers[1]);
+        List<String> notListens = new ArrayList<>();
+        List<String> notMeets = new ArrayList<>();
+        for (int i = 0; i < n; i++) {
+            notListens.add(bufferedReader.readLine());
+        }
+        for (int i = 0; i < m; i++) {
+            notMeets.add(bufferedReader.readLine());
+        }
+        Collections.sort(notListens);
+        Collections.sort(notMeets);
+        HashSet<String> both = new HashSet<>();
+        int startCursor = 0;
+        for (int i = 0; i < notListens.size(); i++) {
+            String nlName = notListens.get(i);
+            char nlFirst = nlName.charAt(0);
+            for (int j = startCursor; j < notMeets.size(); j++) {
+                String nmName = notMeets.get(j);
+                char nmFirst = nmName.charAt(0);
+                if(nlFirst < nmFirst) {
+                    startCursor = j;
+                    break;
+                }else {
+                    if (nlName.equals(nmName)) {
+                        both.add(nmName);
+                    }
+                }
+            }
+        }
+        both.forEach(System.out::println);
+
+//        Set<String> collect = notListens.parallelStream()
+//                .filter(notMeets::contains)
+//                .sorted()
+//                .collect(Collectors.toCollection(LinkedHashSet::new));
+//        collect.forEach(System.out::println);
     }
 
     private static void problem10816() throws IOException {
