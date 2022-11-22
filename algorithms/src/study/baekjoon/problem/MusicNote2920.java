@@ -1,17 +1,17 @@
 package study.baekjoon.problem;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+//import org.slf4j.Logger;
+//import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class MusicNote2920 {
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
+    //private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     public String solveProblem(int[] p) {
-        logger.info("int[] p : {}", p);
+        //logger.info("int[] p : {}", p);
         boolean isAsc = true;
         boolean isDesc = true;
         final int[] asc = {1, 2, 3, 4, 5, 6, 7, 8};
@@ -30,7 +30,7 @@ public class MusicNote2920 {
     }
 
     public String solveProblem(String[] p) {
-        logger.warn("String[] p : {}", p);
+        //logger.warn("String[] p : {}", p);
         boolean isAsc = true;
         boolean isDesc = true;
         final String[] asc = {"1", "2", "3", "4", "5", "6", "7", "8"};
